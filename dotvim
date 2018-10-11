@@ -1,0 +1,105 @@
+execute pathogen#infect()
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+let mapleader = ","
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:auto_save = 1 
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+
+call pathogen#infect()
+call pathogen#helptags()
+
+syntax on
+filetype plugin indent on
+
+
+" enable syntax highlighting
+syntax enable
+
+" show line numbers
+set number
+
+" set tabs to have 4 spaces
+set ts=4
+
+" indent when moving to the next line while writing code
+set autoindent
+
+
+" expand tabs into spaces
+set expandtab
+
+
+" when using the >> or << commands, shift lines by 4 spaces
+set shiftwidth=4
+
+" show a visual line under the cursor's current line
+set cursorline
+
+" show the matching part of the pair for [] {} and ()
+set showmatch
+set showcmd
+
+" enable all Python syntax highlighting features
+let python_highlight_all = 1
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+inoremap jk <Esc>
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+set foldmethod=indent
+set foldlevel=99
+
+nnoremap <space> za
+
+" YouCompleteMe config {{{
+if &runtimepath =~ 'YouCompleteMe'
+    let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_always_populate_location_list = 1
+    let g:ycm_error_symbol = '>'
+    let g:ycm_warning_symbol = '?'
+    let g:ycm_seed_identifiers_with_syntax = 1
+    let g:ycm_auto_start_csharp_server = 0
+    let g:ycm_auto_stop_csharp_server = 1
+    let g:ycm_cache_omnifunc = 0
+    let g:ycm_use_ultisnips_completer = 0
+    let g:ycm_confirm_extra_conf = 1
+    let g:ycm_python_binary_path = '/home/tuanpham/.pyenv/shims/python'
+    nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+    nnoremap <leader>jd :YcmCompleter GoTo<CR>
+    nnoremap <leader>gf :YcmCompleter GoToInclude<CR>
+    nnoremap <leader>gt :YcmCompleter GetType<CR>
+    nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+endif
+" }}}
+"
+set statusline=%<%f\ %h%m%r%w%y\ \ \ \ %{fugitive#statusline()}\ \ \ \ %-14.([%L]\ \ \ %l,%c%V%)\ %P
+set textwidth=79
+set colorcolumn=+1
+set formatoptions-=t
+set relativenumber
+
+nnoremap <Leader>q :quit<CR>
+
+" Color Scheme Configurations {{{
+set background=dark
+let g:solarized_termcolors=16
+let g:solarized_termtrans=1
+let g:solarized_bold=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
+let g:solarized_degraded=0
+colorscheme solarized
+highlight Folded ctermbg=NONE " Turn off highlight folded
+" }}}
+set backspace=2 " make backspace work like most other programs
+
+
